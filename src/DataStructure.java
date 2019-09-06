@@ -27,7 +27,19 @@ public class DataStructure<T> {
          *      tail = tail.next;
          * However, this would fail if the list was empty, as tail would = null
          */
+    }
 
+    // Remove element from end of the list by 'hopscotching' through the nodes until reaching the end, then removing the
+    // last Node by removing the .next reference to it, so it will then be removed by the 'garbage collector'
+    public void removeBack () {
+        Node leading = head;
+        Node trailing = null;
+
+        while (leading.next != null) {
+            trailing = leading;
+            leading = leading.next;
+        }
+        trailing.next = null;
     }
 
     private class Node {
