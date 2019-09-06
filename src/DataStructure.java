@@ -10,12 +10,24 @@ public class DataStructure<T> {
         }
     }
 
-    public void addEnd (T element) {
-        Node tmp = new Node(element, tail);
-        tail.next = null;
+    // Adding Node to the back of the list
+    public void addBack (T element) {
+        Node temp = new Node (element);
+        if (tail != null) {
+            tail.next = temp;
+        }
+        tail = temp;
+
         if (head == null) {
             head = tail;
         }
+        /*
+         * In theory could say:
+         *      tail.next = new Node (element);
+         *      tail = tail.next;
+         * However, this would fail if the list was empty, as tail would = null
+         */
+
     }
 
     private class Node {
@@ -32,8 +44,7 @@ public class DataStructure<T> {
             this(element, null);
         }
 
-        private Node (T element, Node next)
-        {
+        private Node (T element, Node next) {
             this.element = element;
             this.next = next;
         }
